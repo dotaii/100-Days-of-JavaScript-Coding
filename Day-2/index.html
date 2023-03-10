@@ -1,15 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Calculator</title>
 </head>
 
 <body>
-    <h1>Text Day2</h1>
+    <h1>Calculator</h1>
+    <input type="text" id="result" value="0"><br><br>
+    <button onclick="addNumber(1)">1</button>
+    <button onclick="addNumber(2)">2</button>
+    <button onclick="addNumber(3)">3</button>
+    <button onclick="addOperator('+')">+</button><br>
+    <button onclick="addNumber(4)">4</button>
+    <button onclick="addNumber(5)">5</button>
+    <button onclick="addNumber(6)">6</button>
+    <button onclick="addOperator('-')">-</button><br>
+    <button onclick="addNumber(7)">7</button>
+    <button onclick="addNumber(8)">8</button>
+    <button onclick="addNumber(9)">9</button>
+    <button onclick="addOperator('*')">*</button><br>
+    <button onclick="addNumber(0)">0</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="clearResult()">C</button>
+    <button onclick="addOperator('/')">/</button><br>
+    <script>
+        let currentOperator = null;
+        let currentNumber = 0;
+        let result = document.getElementById('result');
+
+        function addNumber(number) {
+            if (result.value == '0') {
+                result.value = number;
+            } else {
+                result.value += number;
+            }
+        }
+
+        function addOperator(operator) {
+            currentOperator = operator;
+            currentNumber = parseFloat(result.value);
+            result.value = '0';
+        }
+
+        function calculate() {
+            let secondNumber = parseFloat(result.value);
+            let total = 0;
+            switch (currentOperator) {
+                case '+':
+                    total = currentNumber + secondNumber;
+                    break;
+                case '-':
+                    total = currentNumber - secondNumber;
+                    break;
+                case '*':
+                    total = currentNumber * secondNumber;
+                    break;
+                case '/':
+                    total = currentNumber / secondNumber;
+                    break;
+            }
+            result.value = total;
+        }
+
+        function clearResult() {
+            result.value = '0';
+            currentNumber = 0;
+            currentOperator = null;
+        }
+    </script>
 </body>
 
 </html>
